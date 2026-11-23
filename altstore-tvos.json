@@ -1,0 +1,54 @@
+{
+  "name": "AIOStreams for Apple TV",
+  "identifier": "io.github.aiostreams-ios.tv",
+  "subtitle": "An unofficial Apple TV app for AIOStreams.",
+  "website": "https://github.com/manish663/aiostreams-ios",
+  "iconURL": "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/AIOStreams/Assets.xcassets/AppIcon.appiconset/icon-1024.png",
+  "tintColor": "6152DF",
+  "apps": [
+    {
+      "name": "AIOStreams",
+      "bundleIdentifier": "io.github.aiostreams-ios.tv",
+      "developerName": "aiostreams-ios",
+      "subtitle": "Your AIOStreams server, played through AetherEngine.",
+      "localizedDescription": "An unofficial native Apple TV app for AIOStreams, built to look and work like the official apps, played through AetherEngine: HDR10, HDR10+, Dolby Vision and Atmos, Live TV with a guide and catch-up, watch parties, Top Shelf and more. Not affiliated with AIOStreams or AetherEngine.",
+      "iconURL": "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/AIOStreams/Assets.xcassets/AppIcon.appiconset/icon-1024.png",
+      "tintColor": "6152DF",
+      "category": "entertainment",
+      "screenshots": [
+        "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/docs/screenshots/tv-home.jpg",
+        "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/docs/screenshots/tv-show.jpg",
+        "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/docs/screenshots/tv-movie.jpg",
+        "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/docs/screenshots/tv-player.jpg"
+      ],
+      "versions": [
+        {
+          "version": "0.7.13",
+          "date": "2026-11-23T04:48:51Z",
+          "localizedDescription": "",
+          "downloadURL": "https://github.com/manish663/aiostreams-ios/releases/download/v0.7.13/AIOStreams-tvOS.ipa",
+          "size": 13049601,
+          "minOSVersion": "18.0",
+          "sha256": "060bef308fbc44c46aab1ba3d7804e90101a29a0789bdae3b9e3d3417de84bc1"
+        },
+        {
+          "version": "0.5.4",
+          "date": "2026-11-15T19:02:09Z",
+          "localizedDescription": "",
+          "downloadURL": "https://github.com/manish663/aiostreams-ios/releases/download/v0.5.4/AIOStreams-tvOS.ipa",
+          "size": 12891090,
+          "minOSVersion": "18.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [
+          "com.apple.security.application-groups"
+        ],
+        "privacy": {
+          "NSLocalNetworkUsageDescription": "AIOStreams connects to your server and streams on your local network."
+        }
+      }
+    }
+  ],
+  "news": []
+}
