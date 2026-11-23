@@ -1,0 +1,45 @@
+{
+  "name": "AIOStreams for iOS",
+  "identifier": "io.github.aiostreams-ios",
+  "subtitle": "An unofficial iPhone and iPad port of AIOStreams.",
+  "website": "https://github.com/manish663/aiostreams-ios",
+  "iconURL": "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/AIOStreams/Assets.xcassets/AppIcon.appiconset/icon-1024.png",
+  "tintColor": "6152DF",
+  "apps": [
+    {
+      "name": "AIOStreams",
+      "bundleIdentifier": "io.github.aiostreams-ios.app",
+      "developerName": "aiostreams-ios",
+      "subtitle": "Your AIOStreams server, played through AetherEngine.",
+      "localizedDescription": "An unofficial iPhone and iPad port of the AIOStreams app. It runs AIOStreams' own web app over AetherEngine, with HDR10, HDR10+, Dolby Vision and Atmos, trailers, Picture in Picture and downloads. Not affiliated with AIOStreams or AetherEngine.",
+      "iconURL": "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/AIOStreams/Assets.xcassets/AppIcon.appiconset/icon-1024.png",
+      "tintColor": "6152DF",
+      "category": "entertainment",
+      "screenshots": [
+        "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/docs/screenshots/iphone-home.jpg",
+        "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/docs/screenshots/iphone-show.jpg",
+        "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/docs/screenshots/iphone-movie.jpg",
+        "https://raw.githubusercontent.com/manish663/aiostreams-ios/main/docs/screenshots/iphone-versions.jpg"
+      ],
+      "versions": [
+        {
+          "version": "0.7.13",
+          "date": "2026-11-23T04:48:51Z",
+          "localizedDescription": "",
+          "downloadURL": "https://github.com/manish663/aiostreams-ios/releases/download/v0.7.13/AIOStreams.ipa",
+          "size": 18180525,
+          "minOSVersion": "18.0",
+          "sha256": "a6c5e2026183b407d175e66bb708cd37f24c7479bf181a9c3f60a7f3dd5c4b30"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSLocalNetworkUsageDescription": "AIOStreams connects to your server and streams on your local network.",
+          "NSMicrophoneUsageDescription": "Voice search in the page's search field uses the microphone."
+        }
+      }
+    }
+  ],
+  "news": []
+}
