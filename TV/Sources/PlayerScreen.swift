@@ -284,7 +284,11 @@ private struct PlayerChrome: View {
                     model.hold(prefs.holdRate)
                     return true
                 },
-                end: { model.hold(nil) }
+                end: {
+                    model.hold(nil)
+                    // The release's click, if one comes, is the hold's; any later click is a click.
+                    Task { try? await Task.sleep(for: .milliseconds(300)); heldSelect = false }
+                }
             )
             .frame(width: 0, height: 0)
 
@@ -311,10 +315,19 @@ private struct PlayerChrome: View {
             )
             .frame(width: 0, height: 0)
 
-            // Takes the remote while the controls are hidden.
-            Color.clear
-                .contentShape(Rectangle())
-                .focusable(!shown && panel == nil)
+            // Takes the remote while the controls are hidden. A button, as tvOS hands a focused
+            // button the Select press itself: a tap gesture on a focusable view can miss a click.
+            Button {
+                if heldSelect { heldSelect = false; return }
+                input()
+                // One click plays or pauses, as Apple's player does, and shows where it is.
+                model.togglePause()
+                reveal(model.isLive ? .play : .bar)
+            } label: {
+                Color.clear.contentShape(Rectangle())
+            }
+                .buttonStyle(SurfaceStyle())
+                .disabled(shown || panel != nil)
                 .focused($focus, equals: .surface)
                 .onMoveCommand { direction in
                     input()
@@ -329,13 +342,6 @@ private struct PlayerChrome: View {
                     case .down where model.request.item.isChannel: changeChannel(1)
                     default: reveal(.play)
                     }
-                }
-                .onTapGesture {
-                    if heldSelect { heldSelect = false; return }
-                    input()
-                    // One click plays or pauses, as Apple's player does, and shows where it is.
-                    model.togglePause()
-                    reveal(model.isLive ? .play : .bar)
                 }
 
             if let rate = model.heldRate {
@@ -1022,6 +1028,11 @@ private struct ProgressTrack: View {
 }
 
 /// The skip button over the video: white on dark, filling white with focus.
+/// Draws nothing for being focused or pressed: the video is the whole surface.
+private struct SurfaceStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View { configuration.label }
+}
+
 private struct SkipStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         Focused { focused in
