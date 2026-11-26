@@ -72,6 +72,7 @@
 "Background colour" = "Hintergrundfarbe";
 "Background from artwork" = "Titelmotiv als Hintergrund";
 "Below zero plays the sound earlier, as for wireless headphones that lag behind the picture." = "Negative Werte ziehen die Tonspur vor, um Latenzen bei kabellosen Kopfhörern auszugleichen.";
+"Binaural for headphones" = "Binaural für Kopfhörer";
 "Bitrate" = "Bitrate";
 "Black" = "Schwarz";
 "Blue" = "Blau";
@@ -274,6 +275,7 @@
 "Password for %@" = "Passwort für %@";
 "Password, and /PIN if the user has one" = "Passwort und /PIN, falls der Benutzer eine hat";
 "Pink" = "Rosa";
+"Places 5.1, 7.1 and Atmos around you on any headphones instead of folding them to stereo. For headphones only, not speakers." = "Verteilt 5.1, 7.1 und Atmos auf beliebigen Kopfhörern rund um dich, statt sie zu Stereo zusammenzufassen. Nur für Kopfhörer, nicht für Lautsprecher.";
 "Play" = "Abspielen";
 "Play %@" = "%@ abspielen";
 "Play lists the versions to choose from, but resuming goes back to the version you were watching. Hold select on a title and choose Play straight away to start the first." = "Abspielen listet die Versionen zur Auswahl auf, aber Fortsetzen kehrt zu der Version zurück, die du geschaut hast. Halte auf einem Titel die Auswahltaste gedrückt und wähle „Sofort abspielen“, um die erste zu starten.";

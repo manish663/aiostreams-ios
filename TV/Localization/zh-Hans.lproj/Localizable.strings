@@ -72,6 +72,7 @@
 "Background colour" = "背景颜色";
 "Background from artwork" = "使用海报作为背景";
 "Below zero plays the sound earlier, as for wireless headphones that lag behind the picture." = "设为负值会让声音提前播放，适用于声音比画面延迟的无线耳机。";
+"Binaural for headphones" = "耳机双耳音效";
 "Bitrate" = "码率";
 "Black" = "黑色";
 "Blue" = "蓝色";
@@ -274,6 +275,7 @@
 "Password for %@" = "%@ 的密码";
 "Password, and /PIN if the user has one" = "密码，若用户有 PIN 则加上 /PIN";
 "Pink" = "粉色";
+"Places 5.1, 7.1 and Atmos around you on any headphones instead of folding them to stereo. For headphones only, not speakers." = "在任何耳机上将 5.1、7.1 和全景声环绕在你周围，而不是缩混为立体声。仅适用于耳机，不适用于扬声器。";
 "Play" = "播放";
 "Play %@" = "播放 %@";
 "Play lists the versions to choose from, but resuming goes back to the version you were watching. Hold select on a title and choose Play straight away to start the first." = "播放会列出可选的版本，但继续播放会回到你之前观看的版本。在影片上按住选择键并选择“立即播放”即可开始第一个版本。";

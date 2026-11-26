@@ -72,6 +72,7 @@
 "Background colour" = "Arka plan rengi";
 "Background from artwork" = "Görselden arka plan";
 "Below zero plays the sound earlier, as for wireless headphones that lag behind the picture." = "Sıfırın altı, görüntüye göre geciken kablosuz kulaklıklar için sesi daha erken çalar.";
+"Binaural for headphones" = "Kulaklık için binaural";
 "Bitrate" = "Bit hızı";
 "Black" = "Siyah";
 "Blue" = "Mavi";
@@ -274,6 +275,7 @@
 "Password for %@" = "%@ için şifre";
 "Password, and /PIN if the user has one" = "Şifre ve kullanıcının varsa /PIN'i";
 "Pink" = "Pembe";
+"Places 5.1, 7.1 and Atmos around you on any headphones instead of folding them to stereo. For headphones only, not speakers." = "5.1, 7.1 ve Atmos sesi stereoya indirmek yerine herhangi bir kulaklıkta etrafınıza yerleştirir. Yalnızca kulaklık içindir, hoparlör için değil.";
 "Play" = "Oynat";
 "Play %@" = "%@ oynat";
 "Play lists the versions to choose from, but resuming goes back to the version you were watching. Hold select on a title and choose Play straight away to start the first." = "Oynat seçebileceğin sürümleri listeler, ama devam etmek izlediğin sürüme döner. İlkini başlatmak için bir içerikte seçme tuşunu basılı tut ve Hemen oynat'ı seç.";

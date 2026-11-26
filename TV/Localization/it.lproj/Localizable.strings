@@ -72,6 +72,7 @@
 "Background colour" = "Colore dello sfondo";
 "Background from artwork" = "Sfondo dalla copertina";
 "Below zero plays the sound earlier, as for wireless headphones that lag behind the picture." = "Con valori negativi l'audio viene riprodotto in anticipo, utile per le cuffie wireless con ritardo rispetto all'immagine.";
+"Binaural for headphones" = "Binaurale per cuffie";
 "Bitrate" = "Bitrate";
 "Black" = "Nero";
 "Blue" = "Blu";
@@ -274,6 +275,7 @@
 "Password for %@" = "Password di %@";
 "Password, and /PIN if the user has one" = "Password, e /PIN se l'utente ne ha uno";
 "Pink" = "Rosa";
+"Places 5.1, 7.1 and Atmos around you on any headphones instead of folding them to stereo. For headphones only, not speakers." = "Colloca l’audio 5.1, 7.1 e Atmos intorno a te su qualsiasi cuffia invece di ridurlo a stereo. Solo per cuffie, non per altoparlanti.";
 "Play" = "Riproduci";
 "Play %@" = "Riproduci %@";
 "Play lists the versions to choose from, but resuming goes back to the version you were watching. Hold select on a title and choose Play straight away to start the first." = "Riproduci elenca le versioni tra cui scegliere, ma la ripresa torna alla versione che stavi guardando. Tieni premuto seleziona su un titolo e scegli Riproduci subito per avviare la prima.";

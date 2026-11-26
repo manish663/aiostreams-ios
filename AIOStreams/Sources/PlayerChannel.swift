@@ -45,6 +45,8 @@ final class PlayerChannel {
     /// catch-up archive, which can't be read from anywhere but their start.
     private var frames: FrameExtractor?
     private var framesAllowed = false
+    /// The web app's Sound settings: the channel cap, dialogue boost, night mode and binaural.
+    private var shaping = AudioShaping()
     private var indexTask: Task<[SubtitleIndex.Timeline]?, Never>?
     private var lineWatch: Task<Void, Never>?
     private var wantsPaused = false
@@ -395,6 +397,7 @@ final class PlayerChannel {
             break
         case "player-settings":
             if let delay = JSON.number(message["audioDelayMs"]) { engine.setAudioDelay(delay / 1000) }
+            setShaping(message)
             if let on = JSON.flag(message["upscaling"]) { setUpscaling(on) }
         case "now-playing":
             nowPlaying.setItem(message["item"] as? [String: Any])
@@ -402,6 +405,21 @@ final class PlayerChannel {
             return false
         }
         return true
+    }
+
+    /// The Sound settings as the engine shapes audio, which a playing title takes up where it is.
+    private func setShaping(_ message: [String: Any]) {
+        let channels = ["stereo": 2, "5.1": 6, "7.1": 8][message["audioChannels"] as? String ?? "auto"]
+        let next = AudioShaping(
+            maxChannels: channels,
+            dialogueGainDB: JSON.number(message["dialogueBoost"]) ?? 0,
+            compressor: JSON.flag(message["nightMode"]) == true ? .night : nil,
+            binaural: JSON.flag(message["binaural"]) == true
+        )
+        guard next != shaping else { return }
+        shaping = next
+        AppLog.info("player", "audio shaping \(next.summary)")
+        if loadedURL != nil { engine.setAudioShaping(next) }
     }
 
     /// An http(s) address, or a finished download's file inside the app's downloads folder,
@@ -455,6 +473,7 @@ final class PlayerChannel {
             options.declaredDurationSeconds = length.map { max($0 - archiveOffset, 1) }
         }
         options.preferredAudioLanguages = JSON.strings(message["audioLanguages"])
+        options.audioShaping = shaping
         // TrueHD Atmos and DTS:X with their heights, which iOS plays as Spatial Audio (OS 26 and later).
         options.objectAudioRendering = .render(.l714)
         // Anime upscaling: the page asks for it on a title it knows is anime, with its setting on.
