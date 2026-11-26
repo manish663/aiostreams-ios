@@ -40,6 +40,11 @@ final class PlayerChannel {
     /// playing it starts: the page's positions are the programme's, the engine's from that start.
     private var archive: CatchUpArchive?
     private var archiveOffset: Double = 0
+    /// Seek bar pictures past what the session holds, from a reader of their own on the same
+    /// source, as the official apps make theirs over a second connection. Not for live or a
+    /// catch-up archive, which can't be read from anywhere but their start.
+    private var frames: FrameExtractor?
+    private var framesAllowed = false
     private var indexTask: Task<[SubtitleIndex.Timeline]?, Never>?
     private var lineWatch: Task<Void, Never>?
     private var wantsPaused = false
@@ -466,6 +471,8 @@ final class PlayerChannel {
         nativePicked = false
 
         if JSON.number(message["archiveOffsetS"]) == nil { lastLoad = message }
+        dropFrames()
+        framesAllowed = !options.isLive && !sequential
         generation += 1
         let current = generation
         loadTask?.cancel()
@@ -567,7 +574,15 @@ final class PlayerChannel {
         })
     }
 
+    private func dropFrames() {
+        let old = frames
+        frames = nil
+        framesAllowed = false
+        if let old { Task { await old.shutdown() } }
+    }
+
     private func stop() {
+        dropFrames()
         playingUpscaled = nil
         loadedHeaders = [:]
         indexTask?.cancel()
@@ -717,7 +732,14 @@ final class PlayerChannel {
         let current = generation
         Task { [weak self] in
             guard let self else { return }
-            let image = await self.engine.scrubThumbnail(atSeconds: wanted.positionMs / 1000, maxWidth: 320)
+            // The engine's position, which a catch-up archive opened partway starts from.
+            let seconds = max(wanted.positionMs / 1000 - self.archiveOffset, 0)
+            var image = await self.engine.scrubThumbnail(atSeconds: seconds, maxWidth: 320)
+            // Not held yet: from the source itself, over a reader of its own.
+            if image == nil, current == self.generation, self.framesAllowed {
+                if self.frames == nil { self.frames = self.engine.makeFrameExtractor() }
+                image = await self.frames?.thumbnail(at: seconds, maxWidth: 320)
+            }
             self.thumbnailBusy = false
             if current == self.generation, let image,
                let jpeg = UIImage(cgImage: image).jpegData(compressionQuality: 0.7) {
