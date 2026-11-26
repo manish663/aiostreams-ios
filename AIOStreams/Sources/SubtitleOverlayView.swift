@@ -282,10 +282,24 @@ final class SubtitleOverlayView: UIView {
         if outline > 0, !look.box {
             // The outline first, then the fill over it, as libass draws a border.
             let stroked = NSMutableAttributedString(attributedString: string)
+            let whole = NSRange(location: 0, length: stroked.length)
             stroked.addAttributes(
                 [.strokeColor: look.outlineColor, .strokeWidth: 200 * outline / max(font(of: string), 1)],
-                range: NSRange(location: 0, length: stroked.length)
+                range: whole
             )
+            // A styled file's dark text (a sign's black over a white border, whose border colour the
+            // cue doesn't carry) gets a light outline where the outline would be dark too, so it reads.
+            if look.outlineColor.luminance < 0.3 {
+                stroked.enumerateAttribute(.foregroundColor, in: whole) { value, range, _ in
+                    if let colour = value as? UIColor, colour.luminance < 0.3 {
+                        stroked.addAttribute(.strokeColor, value: UIColor.white, range: range)
+                    }
+                }
+            }
+            // Round joins, as libass strokes: a mitred join runs out into a spike at the sharp
+            // corners of letters such as M and N.
+            context.setLineJoin(.round)
+            context.setLineCap(.round)
             stroked.draw(with: inner, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
             context.setShadow(offset: .zero, blur: 0)
         }
@@ -376,5 +390,14 @@ enum SubtitleTags {
         }
         // A tag at the start leaves the line's first space behind.
         while line.length > 0, line.string.first == " " { line.deleteCharacters(in: NSRange(location: 0, length: 1)) }
+    }
+}
+
+private extension UIColor {
+    /// Relative luminance, 0 for black to 1 for white.
+    var luminance: CGFloat {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        guard getRed(&r, green: &g, blue: &b, alpha: &a) else { return 1 }
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b
     }
 }

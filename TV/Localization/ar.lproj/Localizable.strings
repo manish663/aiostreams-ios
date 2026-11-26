@@ -352,6 +352,7 @@
 "Shrinks the whole app towards the middle of the screen, for TVs and projectors that cut off its edges." = "يصغّر التطبيق بالكامل نحو منتصف الشاشة، لأجهزة التلفاز والعارض التي تقص حوافها.";
 "Shuffle" = "تشغيل عشوائي";
 "Sign in" = "تسجيل الدخول";
+"Sign out" = "تسجيل الخروج";
 "Signed in as" = "مسجّل الدخول باسم";
 "Signed out. Sign in again." = "تم تسجيل الخروج. سجّل الدخول مجددًا.";
 "Signing in…" = "جارٍ تسجيل الدخول…";

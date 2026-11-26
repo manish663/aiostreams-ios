@@ -352,6 +352,7 @@
 "Shrinks the whole app towards the middle of the screen, for TVs and projectors that cut off its edges." = "Reduce toda la app hacia el centro de la pantalla, para televisores y proyectores que recortan los bordes.";
 "Shuffle" = "Mezclar";
 "Sign in" = "Iniciar sesión";
+"Sign out" = "Cerrar sesión";
 "Signed in as" = "Sesión iniciada como";
 "Signed out. Sign in again." = "Sesión cerrada. Vuelve a iniciar sesión.";
 "Signing in…" = "Iniciando sesión…";

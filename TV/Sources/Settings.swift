@@ -802,7 +802,8 @@ struct SettingsView: View {
                 }
                 note(L("Also when you come back to it after half an hour. Whoever was watching carries on without their PIN."))
                 HStack(spacing: Theme.px(8)) {
-                    Button(L("Switch user")) { session.signOut() }.buttonStyle(SoftPillStyle())
+                    Button(L("Switch user")) { session.ask() }.buttonStyle(SoftPillStyle())
+                    Button(L("Sign out")) { session.signOut() }.buttonStyle(SoftPillStyle())
                     Button(L("Change server")) { session.forgetServer() }.buttonStyle(SoftPillStyle())
                 }
                 .padding(.top, Theme.px(4))
