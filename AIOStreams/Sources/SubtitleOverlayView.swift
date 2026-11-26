@@ -317,12 +317,23 @@ final class SubtitleOverlayView: UIView {
         layout.addTextContainer(container)
         storage.addLayoutManager(layout)
         var rects: [CGRect] = []
+        let text = string.string as NSString
         layout.enumerateLineFragments(forGlyphRange: layout.glyphRange(for: container)) { fragment, _, _, glyphs, _ in
+            // The line's text without the break or spaces it ends on: a line break's glyph reaches to
+            // the end of the line, which stretched a short line's band to the cue's widest.
+            var characters = layout.characterRange(forGlyphRange: glyphs, actualGlyphRange: nil)
+            while characters.length > 0,
+                  let scalar = UnicodeScalar(text.character(at: characters.location + characters.length - 1)),
+                  CharacterSet.whitespacesAndNewlines.contains(scalar) {
+                characters.length -= 1
+            }
+            guard characters.length > 0 else { return }
+            let visible = layout.glyphRange(forCharacterRange: characters, actualCharacterRange: nil)
             // The glyphs' own bounds, so a centred line's band is centred, but the fragment's height,
             // so the bands of a cue's lines meet.
-            let glyphs = layout.boundingRect(forGlyphRange: glyphs, in: container)
-            guard glyphs.width > 0 else { return }
-            rects.append(CGRect(x: glyphs.minX, y: fragment.minY, width: glyphs.width, height: fragment.height))
+            let bounds = layout.boundingRect(forGlyphRange: visible, in: container)
+            guard bounds.width > 0 else { return }
+            rects.append(CGRect(x: bounds.minX, y: fragment.minY, width: bounds.width, height: fragment.height))
         }
         return rects
     }
